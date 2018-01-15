@@ -1,10 +1,10 @@
 #container {
     border: 1px dashed purple;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 20px;
-     justify-content: space-between;
-   align-items: center;
+    justify-content: space-around;
+    align-items: center;
   }
 
 .labyrinth {
@@ -27,13 +27,32 @@
 }
 
 #navigator {
-  border: 1px dashed blue; 
+  border: 1px solid #e109c4; 
   display: flex;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
 }
+
+#attribution {
+  border: 1px solid greenyellow; 
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.attributionRow{
+  border: 1px solid red ;
+  padding: 10px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+
+
 
 .arrow{
   border: 1px solid darkorchid;
@@ -47,12 +66,11 @@
 }
 
 .row{
-  border:0;
+  border:0 ;
   padding: 0px;
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-
 
 }
 
