@@ -31,6 +31,29 @@ function Human(container, name, age, gender, race, skill, x, y) {
 let hprt = Human.prototype
 hprt.CLASS_NAME = "human"
 
+//приватные методы, выводящий информацию на консоль
+//Character
+hprt._outputToConsoleCharacter = function () {
+    console.groupCollapsed("Character")
+    console.log(
+        this.name, this.age, this.gender, this.race, this.skill,
+    )
+    console.groupEnd()
+}
+
+hprt._outputToConsoleCharacterAndCoordinates = function () {
+    console.groupCollapsed("Character")
+    console.log(
+        this.name, this.age, this.gender, this.race, this.skill,
+    )
+    console.groupEnd()
+    console.groupCollapsed("Coordinates")
+    console.log(
+        this.x, this.y,
+    )
+    console.groupEnd()
+}
+
 // в динамике рисуем элементы
 hprt.render = function () {
     //рисуем кнопки
@@ -114,8 +137,6 @@ hprt.render = function () {
     attributionSkill.appendChild(skillElButton)
     skillElButton.addEventListener("click", this.skillElButtonClick)
 
-
-
     //Делаем навигатор
     let navigatorEl = document.createElement("div")
     navigatorEl.id = "navigator"
@@ -170,7 +191,6 @@ hprt.render = function () {
     goEastEl.addEventListener("click", this.goEast)
 
     //Строчка третья кубика
-
     let rowEl3 = document.createElement("div")
     rowEl3.className = "row"
     navigatorEl.appendChild(rowEl3)
@@ -197,228 +217,71 @@ hprt.render = function () {
 
 hprt.nameElButtonClick = function () {
     this.name = this.nameEl.value
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-
+    this._outputToConsoleCharacter()
 }
 
 hprt.ageElButtonClick = function () {
     this.age = this.ageEl.value
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacter()
 }
 
 hprt.genderElButtonClick = function () {
     this.gender = this.genderEl.value
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacter()
 }
 
-hprt.raceElButtonClick = function(){
+hprt.raceElButtonClick = function () {
     this.race = this.raceEl.value
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-
+    this._outputToConsoleCharacter()
 }
 
-hprt.skillElButtonClick = function(){
+hprt.skillElButtonClick = function () {
     this.skill = this.skillEl.value
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-
+    this._outputToConsoleCharacter()
 }
-
-
 
 hprt.goNorth = function () {
     this.y -= 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goNortheEast = function () {
     this.x += 1
     this.y -= 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goEast = function () {
     this.x += 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goSouthEast = function () {
     this.x += 1
     this.y += 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goSouth = function () {
     this.y += 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goSouthWest = function () {
     this.x -= 1
     this.y += 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goWest = function () {
     this.x -= 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt.goNorthWest = function () {
     this.x -= 1
     this.y -= 1
-    console.groupCollapsed("Parsonage")
-    console.log(
-        this.name,
-        this.age,
-        this.gender,
-        this.race,
-        this.skill,
-    )
-    console.groupEnd()
-    console.groupCollapsed("Coordinates")
-    console.log(
-        this.x,
-        this.y,
-    )
-    console.groupEnd()
+    this._outputToConsoleCharacterAndCoordinates()
 }
 
 hprt = null
