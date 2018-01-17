@@ -22,10 +22,6 @@ function Human(container, name, age, gender, race, skill, x, y) {
     this.goSouth = this.goSouth.bind(this)
     this.goSouthEast = this.goSouthEast.bind(this)
     this.onElButtonClick = this.onElButtonClick.bind(this)
-    /*this.ageElButtonClick = this.ageElButtonClick.bind(this)
-    this.genderElButtonClick = this.genderElButtonClick.bind(this)
-    this.raceElButtonClick = this.raceElButtonClick.bind(this)
-    this.skillElButtonClick = this.skillElButtonClick.bind(this)*/
 }
 
 let hprt = Human.prototype
@@ -56,13 +52,12 @@ hprt._outputToConsoleCharacterAndCoordinates = function () {
 
 // в динамике рисуем элементы
 hprt.render = function () {
-    //рисуем кнопки
+    //Рисуем кнопки
     let attributionEl = document.createElement("div")
     attributionEl.id = "attribution"
     attributionEl.innerHTML = "Данные персонажа"
     this.container.appendChild(attributionEl)
-
-
+    //Делаю форму
     let attributionElForm = document.createElement("form")
     attributionEl.appendChild(attributionElForm)
     attributionElForm.className = "form"
@@ -70,137 +65,100 @@ hprt.render = function () {
     // Строка изменить имя
     this.nameEl = document.createElement("input")
     this.nameEl.placeholder = "Введите имя персонажа"
+    this.nameEl.className = "row"
     attributionElForm.appendChild(this.nameEl)
     //Строка изменить возраст
     this.ageEl = document.createElement("input")
     this.ageEl.placeholder = "Введите возраст персонажа"
+    this.ageEl.className = "row"
     attributionElForm.appendChild(this.ageEl)
     //Строка изменить пол
     this.genderEl = document.createElement("input")
     this.genderEl.placeholder = "Введите пол персонажа"
+    this.genderEl.className = "row"
     attributionElForm.appendChild(this.genderEl)
     //Строка изменить рассу
     this.raceEl = document.createElement("input")
     this.raceEl.placeholder = "Введите рассу персонажа"
+    this.raceEl.className = "row"
     attributionElForm.appendChild(this.raceEl)
     //Строка изменить навык
     this.skillEl = document.createElement("input")
     this.skillEl.placeholder = "Введите навык персонажа"
+    this.skillEl.className = "row"
     attributionElForm.appendChild(this.skillEl)
 
-
+    //Кнопка "Ок!"
     let elButton = document.createElement("button")
     elButton.innerHTML = "Ok!"
     elButton.type = "button"
+    elButton.className = "row"
     attributionElForm.appendChild(elButton)
     elButton.addEventListener("click", this.onElButtonClick)
-
-
-
-    /* let ageElButton = document.createElement("button")
-     ageElButton.innerHTML = "Ok!"
-     ageElButton.type = "button"
-     attributionElForm.appendChild(ageElButton)
-     ageElButton.addEventListener("click", this.ageElButtonClick)*/
-
-
-    /* let genderElButton = document.createElement("button")
-     genderElButton.innerHTML = "Ok!"
-     genderElButton.type = "button"
-     attributionElForm.appendChild(genderElButton)
-     genderElButton.addEventListener("click", this.genderElButtonClick)*/
-
-
-
-    /*let raceElButton = document.createElement("button")
-    raceElButton.innerHTML = "Ok!"
-    raceElButton.type = "button"
-    attributionElForm.appendChild(raceElButton)
-    raceElButton.addEventListener("click", this.raceElButtonClick)*/
-
-
-    /*let skillElButton = document.createElement("button")
-    skillElButton.innerHTML = "Ok!"
-    skillElButton.type = "button"
-    attributionElForm.appendChild(skillElButton)
-    skillElButton.addEventListener("click", this.skillElButtonClick)*/
-
 
 
     //Делаем навигатор
     let navigatorEl = document.createElement("div")
     navigatorEl.id = "navigator"
-    navigatorEl.innerHTML = "Путь персонажа"
+    /*navigatorEl.innerHTML = "Путь персонажа"*/
     /*navigatorEl.className = this.CLASS_NAME*/
     this.container.appendChild(navigatorEl)
 
     //Строчка первая кубика    
-    let rowEl1 = document.createElement("div")
-    rowEl1.className = "row"
-    navigatorEl.appendChild(rowEl1)
-
     let goNorthWestEL = document.createElement("div")
     goNorthWestEL.innerHTML = "NW"
     goNorthWestEL.className = "arrow"
-    rowEl1.appendChild(goNorthWestEL)
+    navigatorEl.appendChild(goNorthWestEL)
     goNorthWestEL.addEventListener("click", this.goNorthWest)
 
     let goNorthEl = document.createElement("div")
     goNorthEl.innerHTML = "N"
     goNorthEl.className = "arrow"
-    rowEl1.appendChild(goNorthEl)
+    navigatorEl.appendChild(goNorthEl)
     //делаю обработчик щелчка по диву N
     goNorthEl.addEventListener("click", this.goNorth)
 
     let goNortheEastEl = document.createElement("div")
     goNortheEastEl.innerHTML = "NE"
     goNortheEastEl.className = "arrow"
-    rowEl1.appendChild(goNortheEastEl)
+    navigatorEl.appendChild(goNortheEastEl)
     goNortheEastEl.addEventListener("click", this.goNortheEast)
 
     // Строчка вторая кубика
-    let rowEl2 = document.createElement("div")
-    rowEl2.className = "row"
-    navigatorEl.appendChild(rowEl2)
-
     let goWestEl = document.createElement("div")
     goWestEl.innerHTML = "W"
     goWestEl.className = "arrow"
-    rowEl2.appendChild(goWestEl)
+    navigatorEl.appendChild(goWestEl)
     goWestEl.addEventListener("click", this.goWest)
 
     let goEmptyEl = document.createElement("div")
     goEmptyEl.innerHTML = ""
     goEmptyEl.className = "arrow"
-    rowEl2.appendChild(goEmptyEl)
+    navigatorEl.appendChild(goEmptyEl)
 
     let goEastEl = document.createElement("div")
     goEastEl.innerHTML = "E"
     goEastEl.className = "arrow"
-    rowEl2.appendChild(goEastEl)
+    navigatorEl.appendChild(goEastEl)
     goEastEl.addEventListener("click", this.goEast)
 
     //Строчка третья кубика
-    let rowEl3 = document.createElement("div")
-    rowEl3.className = "row"
-    navigatorEl.appendChild(rowEl3)
-
     let goSouthWestEl = document.createElement("div")
     goSouthWestEl.innerHTML = "SW"
     goSouthWestEl.className = "arrow"
-    rowEl3.appendChild(goSouthWestEl)
+    navigatorEl.appendChild(goSouthWestEl)
     goSouthWestEl.addEventListener("click", this.goSouthWest)
 
     let goSouthEl = document.createElement("div")
     goSouthEl.innerHTML = "S"
     goSouthEl.className = "arrow"
-    rowEl3.appendChild(goSouthEl)
+    navigatorEl.appendChild(goSouthEl)
     goSouthEl.addEventListener("click", this.goSouth)
 
     let goSouthEastEL = document.createElement("div")
     goSouthEastEL.innerHTML = "SE"
     goSouthEastEL.className = "arrow"
-    rowEl3.appendChild(goSouthEastEL)
+    navigatorEl.appendChild(goSouthEastEL)
     goSouthEastEL.addEventListener("click", this.goSouthEast)
 }
 
@@ -229,25 +187,6 @@ hprt.onElButtonClick = function () {
     this._outputToConsoleCharacter()
 }
 
-/*hprt.ageElButtonClick = function () {
-    this.age = this.ageEl.value
-    this._outputToConsoleCharacter()
-}
-
-hprt.genderElButtonClick = function () {
-    this.gender = this.genderEl.value
-    this._outputToConsoleCharacter()
-}
-
-hprt.raceElButtonClick = function () {
-    this.race = this.raceEl.value
-    this._outputToConsoleCharacter()
-}
-
-hprt.skillElButtonClick = function () {
-    this.skill = this.skillEl.value
-    this._outputToConsoleCharacter()
-}*/
 
 hprt.goNorth = function () {
     this.y -= 1
