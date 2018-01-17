@@ -21,11 +21,11 @@ function Human(container, name, age, gender, race, skill, x, y) {
     this.goSouthWest = this.goSouthWest.bind(this)
     this.goSouth = this.goSouth.bind(this)
     this.goSouthEast = this.goSouthEast.bind(this)
-    this.nameElButtonClick = this.nameElButtonClick.bind(this)
-    this.ageElButtonClick = this.ageElButtonClick.bind(this)
+    this.onElButtonClick = this.onElButtonClick.bind(this)
+    /*this.ageElButtonClick = this.ageElButtonClick.bind(this)
     this.genderElButtonClick = this.genderElButtonClick.bind(this)
     this.raceElButtonClick = this.raceElButtonClick.bind(this)
-    this.skillElButtonClick = this.skillElButtonClick.bind(this)
+    this.skillElButtonClick = this.skillElButtonClick.bind(this)*/
 }
 
 let hprt = Human.prototype
@@ -62,80 +62,70 @@ hprt.render = function () {
     attributionEl.innerHTML = "Данные персонажа"
     this.container.appendChild(attributionEl)
 
-    // Кнопка изменить имя
-    let attributionName = document.createElement("form")
-    attributionEl.appendChild(attributionName)
-    attributionName.className = "row"
 
+    let attributionElForm = document.createElement("form")
+    attributionEl.appendChild(attributionElForm)
+    attributionElForm.className = "form"
+
+    // Строка изменить имя
     this.nameEl = document.createElement("input")
     this.nameEl.placeholder = "Введите имя персонажа"
-    attributionName.appendChild(this.nameEl)
-
-    let nameElButton = document.createElement("button")
-    nameElButton.innerHTML = "Ok!"
-    nameElButton.type = "button"
-    attributionName.appendChild(nameElButton)
-    nameElButton.addEventListener("click", this.nameElButtonClick)
-
-    //Кнопка изменить возраст
-    let attributionAge = document.createElement("form")
-    attributionEl.appendChild(attributionAge)
-    attributionAge.className = "row"
-
+    attributionElForm.appendChild(this.nameEl)
+    //Строка изменить возраст
     this.ageEl = document.createElement("input")
     this.ageEl.placeholder = "Введите возраст персонажа"
-    attributionAge.appendChild(this.ageEl)
-
-    let ageElButton = document.createElement("button")
-    ageElButton.innerHTML = "Ok!"
-    ageElButton.type = "button"
-    attributionAge.appendChild(ageElButton)
-    ageElButton.addEventListener("click", this.ageElButtonClick)
-
-    //Кнопка изменить пол
-    let attributionGender = document.createElement("form")
-    attributionEl.appendChild(attributionGender)
-    attributionGender.className = "row"
-
+    attributionElForm.appendChild(this.ageEl)
+    //Строка изменить пол
     this.genderEl = document.createElement("input")
     this.genderEl.placeholder = "Введите пол персонажа"
-    attributionGender.appendChild(this.genderEl)
-
-    let genderElButton = document.createElement("button")
-    genderElButton.innerHTML = "Ok!"
-    genderElButton.type = "button"
-    attributionGender.appendChild(genderElButton)
-    genderElButton.addEventListener("click", this.genderElButtonClick)
-
-    //Кнопка изменить рассу
-    let attributionRace = document.createElement("form")
-    attributionEl.appendChild(attributionRace)
-    attributionRace.className = "row"
-
+    attributionElForm.appendChild(this.genderEl)
+    //Строка изменить рассу
     this.raceEl = document.createElement("input")
     this.raceEl.placeholder = "Введите рассу персонажа"
-    attributionRace.appendChild(this.raceEl)
-
-    let raceElButton = document.createElement("button")
-    raceElButton.innerHTML = "Ok!"
-    raceElButton.type = "button"
-    attributionRace.appendChild(raceElButton)
-    raceElButton.addEventListener("click", this.raceElButtonClick)
-
-    //Кнопка изменить навык
-    let attributionSkill = document.createElement("form")
-    attributionEl.appendChild(attributionSkill)
-    attributionSkill.className = "row"
-
+    attributionElForm.appendChild(this.raceEl)
+    //Строка изменить навык
     this.skillEl = document.createElement("input")
     this.skillEl.placeholder = "Введите навык персонажа"
-    attributionSkill.appendChild(this.skillEl)
+    attributionElForm.appendChild(this.skillEl)
 
-    let skillElButton = document.createElement("button")
+
+    let elButton = document.createElement("button")
+    elButton.innerHTML = "Ok!"
+    elButton.type = "button"
+    attributionElForm.appendChild(elButton)
+    elButton.addEventListener("click", this.onElButtonClick)
+
+
+
+    /* let ageElButton = document.createElement("button")
+     ageElButton.innerHTML = "Ok!"
+     ageElButton.type = "button"
+     attributionElForm.appendChild(ageElButton)
+     ageElButton.addEventListener("click", this.ageElButtonClick)*/
+
+
+    /* let genderElButton = document.createElement("button")
+     genderElButton.innerHTML = "Ok!"
+     genderElButton.type = "button"
+     attributionElForm.appendChild(genderElButton)
+     genderElButton.addEventListener("click", this.genderElButtonClick)*/
+
+
+
+    /*let raceElButton = document.createElement("button")
+    raceElButton.innerHTML = "Ok!"
+    raceElButton.type = "button"
+    attributionElForm.appendChild(raceElButton)
+    raceElButton.addEventListener("click", this.raceElButtonClick)*/
+
+
+    /*let skillElButton = document.createElement("button")
     skillElButton.innerHTML = "Ok!"
     skillElButton.type = "button"
-    attributionSkill.appendChild(skillElButton)
-    skillElButton.addEventListener("click", this.skillElButtonClick)
+    attributionElForm.appendChild(skillElButton)
+    skillElButton.addEventListener("click", this.skillElButtonClick)*/
+
+
 
     //Делаем навигатор
     let navigatorEl = document.createElement("div")
@@ -215,12 +205,31 @@ hprt.render = function () {
 }
 
 
-hprt.nameElButtonClick = function () {
-    this.name = this.nameEl.value
+hprt.onElButtonClick = function () {
+    if (this.nameEl.value != "") {
+        this.name = this.nameEl.value
+    }
+
+    if (this.ageEl.value != "") {
+        this.age = this.ageEl.value
+    }
+
+    if (this.genderEl.value != "") {
+        this.gender = this.genderEl.value
+    }
+
+    if (this.raceEl.value != "") {
+        this.race = this.raceEl.value
+    }
+
+    if (this.skillEl.value != "") {
+        this.skill = this.skillEl.value
+    }
+
     this._outputToConsoleCharacter()
 }
 
-hprt.ageElButtonClick = function () {
+/*hprt.ageElButtonClick = function () {
     this.age = this.ageEl.value
     this._outputToConsoleCharacter()
 }
@@ -238,7 +247,7 @@ hprt.raceElButtonClick = function () {
 hprt.skillElButtonClick = function () {
     this.skill = this.skillEl.value
     this._outputToConsoleCharacter()
-}
+}*/
 
 hprt.goNorth = function () {
     this.y -= 1
