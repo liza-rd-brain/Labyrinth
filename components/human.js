@@ -57,20 +57,20 @@ hprt.render = function () {
     humanEl.className = this.CLASS_NAME
     this.container.appendChild(humanEl)
 
-    //Рисуем элемент атрибут
+    //Рисуем атрибут
     let attributeEl = new Аttribute(
         humanEl,
         this
     )
         .render()
 
-    //Делаем навигатор
-
-
+    //Рисуем навигатор
     let navigatorEl = new Navigator(
         humanEl,
         this
     ).render()
+    //Рисуем карту
+    let mapEl = new Map(humanEl).render()
 }
 
 
