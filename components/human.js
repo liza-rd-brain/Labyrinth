@@ -52,114 +52,25 @@ hprt._outputToConsoleCharacterAndCoordinates = function () {
 
 // в динамике рисуем элементы
 hprt.render = function () {
-    //Рисуем кнопки
-    let attributionEl = document.createElement("div")
-    attributionEl.id = "attribution"
-    attributionEl.innerHTML = "Данные персонажа"
-    this.container.appendChild(attributionEl)
-    //Делаю форму
-    let attributionElForm = document.createElement("form")
-    attributionEl.appendChild(attributionElForm)
-    attributionElForm.className = "form"
+    //рисуем элемент человек
+    let humanEl = document.createElement("div")
+    humanEl.className = this.CLASS_NAME
+    this.container.appendChild(humanEl)
 
-    // Строка изменить имя
-    this.nameEl = document.createElement("input")
-    this.nameEl.placeholder = "Введите имя персонажа"
-    this.nameEl.className = "row"
-    attributionElForm.appendChild(this.nameEl)
-    //Строка изменить возраст
-    this.ageEl = document.createElement("input")
-    this.ageEl.placeholder = "Введите возраст персонажа"
-    this.ageEl.className = "row"
-    attributionElForm.appendChild(this.ageEl)
-    //Строка изменить пол
-    this.genderEl = document.createElement("input")
-    this.genderEl.placeholder = "Введите пол персонажа"
-    this.genderEl.className = "row"
-    attributionElForm.appendChild(this.genderEl)
-    //Строка изменить рассу
-    this.raceEl = document.createElement("input")
-    this.raceEl.placeholder = "Введите рассу персонажа"
-    this.raceEl.className = "row"
-    attributionElForm.appendChild(this.raceEl)
-    //Строка изменить навык
-    this.skillEl = document.createElement("input")
-    this.skillEl.placeholder = "Введите навык персонажа"
-    this.skillEl.className = "row"
-    attributionElForm.appendChild(this.skillEl)
-
-    //Кнопка "Ок!"
-    let elButton = document.createElement("button")
-    elButton.innerHTML = "Ok!"
-    elButton.type = "button"
-    elButton.className = "row"
-    attributionElForm.appendChild(elButton)
-    elButton.addEventListener("click", this.onElButtonClick)
-
+    //Рисуем элемент атрибут
+    let attributeEl = new Аttribute(
+        humanEl,
+        this
+    )
+        .render()
 
     //Делаем навигатор
-    let navigatorEl = document.createElement("div")
-    navigatorEl.id = "navigator"
-    /*navigatorEl.innerHTML = "Путь персонажа"*/
-    /*navigatorEl.className = this.CLASS_NAME*/
-    this.container.appendChild(navigatorEl)
 
-    //Строчка первая кубика    
-    let goNorthWestEL = document.createElement("div")
-    goNorthWestEL.innerHTML = "NW"
-    goNorthWestEL.className = "arrow"
-    navigatorEl.appendChild(goNorthWestEL)
-    goNorthWestEL.addEventListener("click", this.goNorthWest)
 
-    let goNorthEl = document.createElement("div")
-    goNorthEl.innerHTML = "N"
-    goNorthEl.className = "arrow"
-    navigatorEl.appendChild(goNorthEl)
-    //делаю обработчик щелчка по диву N
-    goNorthEl.addEventListener("click", this.goNorth)
-
-    let goNortheEastEl = document.createElement("div")
-    goNortheEastEl.innerHTML = "NE"
-    goNortheEastEl.className = "arrow"
-    navigatorEl.appendChild(goNortheEastEl)
-    goNortheEastEl.addEventListener("click", this.goNortheEast)
-
-    // Строчка вторая кубика
-    let goWestEl = document.createElement("div")
-    goWestEl.innerHTML = "W"
-    goWestEl.className = "arrow"
-    navigatorEl.appendChild(goWestEl)
-    goWestEl.addEventListener("click", this.goWest)
-
-    let goEmptyEl = document.createElement("div")
-    goEmptyEl.innerHTML = ""
-    goEmptyEl.className = "arrow"
-    navigatorEl.appendChild(goEmptyEl)
-
-    let goEastEl = document.createElement("div")
-    goEastEl.innerHTML = "E"
-    goEastEl.className = "arrow"
-    navigatorEl.appendChild(goEastEl)
-    goEastEl.addEventListener("click", this.goEast)
-
-    //Строчка третья кубика
-    let goSouthWestEl = document.createElement("div")
-    goSouthWestEl.innerHTML = "SW"
-    goSouthWestEl.className = "arrow"
-    navigatorEl.appendChild(goSouthWestEl)
-    goSouthWestEl.addEventListener("click", this.goSouthWest)
-
-    let goSouthEl = document.createElement("div")
-    goSouthEl.innerHTML = "S"
-    goSouthEl.className = "arrow"
-    navigatorEl.appendChild(goSouthEl)
-    goSouthEl.addEventListener("click", this.goSouth)
-
-    let goSouthEastEL = document.createElement("div")
-    goSouthEastEL.innerHTML = "SE"
-    goSouthEastEL.className = "arrow"
-    navigatorEl.appendChild(goSouthEastEL)
-    goSouthEastEL.addEventListener("click", this.goSouthEast)
+    let navigatorEl = new Navigator(
+        humanEl,
+        this
+    ).render()
 }
 
 
