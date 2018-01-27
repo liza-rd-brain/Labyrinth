@@ -19,12 +19,12 @@ mprt.render = function () {
 
     for (i = 0; i < n; i++) {
         map[i] = document.createElement("div")
-        map[i].className = "mapCell"
-        mapEl.appendChild(map[i])
+        /*map[i].className = "mapCell"*/
+        /*mapEl.appendChild(map[i])*/
         for (j = 0; j < m; j++) {
             map[i][j] = document.createElement("div")
             map[i][j].className = "mapCell"
-            map[i].appendChild(map[i][j])
+            mapEl.appendChild(map[i][j])
         }
     }
 
