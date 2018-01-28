@@ -1,6 +1,21 @@
-function Navigator(humanEl, parent) {
-    this.humanEl = humanEl
-    this.parent = parent
+function Navigator(humanEl,
+    goNorthWest,
+    goNorth,
+    goNortheEast,
+    goWest,
+    goEast,
+    goSouthWest,
+    goSouth,
+    goSouthEast) {
+    this.humanEl = humanEl,
+        this.goNorthWest = goNorthWest,
+        this.goNorth = goNorth,
+        this.goNortheEast = goNortheEast,
+        this.goWest = goWest,
+        this.goEast = goEast,
+        this.goSouthWest = goSouthWest,
+        this.goSouth = goSouth,
+        this.goSouthEast = goSouthEast
 
 }
 
@@ -25,27 +40,27 @@ nprt.render = function () {
     goNorthWestEL.innerHTML = "NW"
     goNorthWestEL.className = "arrow"
     navigatorEl.appendChild(goNorthWestEL)
-    goNorthWestEL.addEventListener("click", this.parent.goNorthWest)
+    goNorthWestEL.addEventListener("click", this.goNorthWest)
 
     let goNorthEl = document.createElement("div")
     goNorthEl.innerHTML = "N"
     goNorthEl.className = "arrow"
     navigatorEl.appendChild(goNorthEl)
     //делаю обработчик щелчка по диву N
-    goNorthEl.addEventListener("click", this.parent.goNorth)
+    goNorthEl.addEventListener("click", this.goNorth)
 
     let goNortheEastEl = document.createElement("div")
     goNortheEastEl.innerHTML = "NE"
     goNortheEastEl.className = "arrow"
     navigatorEl.appendChild(goNortheEastEl)
-    goNortheEastEl.addEventListener("click", this.parent.goNortheEast)
+    goNortheEastEl.addEventListener("click", this.goNortheEast)
 
     // Строчка вторая кубика
     let goWestEl = document.createElement("div")
     goWestEl.innerHTML = "W"
     goWestEl.className = "arrow"
     navigatorEl.appendChild(goWestEl)
-    goWestEl.addEventListener("click", this.parent.goWest)
+    goWestEl.addEventListener("click", this.goWest)
 
     let goEmptyEl = document.createElement("div")
     goEmptyEl.innerHTML = ""
@@ -56,26 +71,26 @@ nprt.render = function () {
     goEastEl.innerHTML = "E"
     goEastEl.className = "arrow"
     navigatorEl.appendChild(goEastEl)
-    goEastEl.addEventListener("click", this.parent.goEast)
+    goEastEl.addEventListener("click", this.goEast)
 
     //Строчка третья кубика
     let goSouthWestEl = document.createElement("div")
     goSouthWestEl.innerHTML = "SW"
     goSouthWestEl.className = "arrow"
     navigatorEl.appendChild(goSouthWestEl)
-    goSouthWestEl.addEventListener("click", this.parent.goSouthWest)
+    goSouthWestEl.addEventListener("click", this.goSouthWest)
 
     let goSouthEl = document.createElement("div")
     goSouthEl.innerHTML = "S"
     goSouthEl.className = "arrow"
     navigatorEl.appendChild(goSouthEl)
-    goSouthEl.addEventListener("click", this.parent.goSouth)
+    goSouthEl.addEventListener("click", this.goSouth)
 
     let goSouthEastEL = document.createElement("div")
     goSouthEastEL.innerHTML = "SE"
     goSouthEastEL.className = "arrow"
     navigatorEl.appendChild(goSouthEastEL)
-    goSouthEastEL.addEventListener("click", this.parent.goSouthEast)
+    goSouthEastEL.addEventListener("click", this.goSouthEast)
 }
 
 nprt = null

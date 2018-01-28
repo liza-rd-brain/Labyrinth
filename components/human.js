@@ -7,6 +7,7 @@ function Human(container, name, age, gender, race, skill, x, y) {
     this.skill = skill
     this.x = 0
     this.y = 0
+    this.attributeEl = null
     this.nameEl = null
     this.ageEl = null
     this.genderEl = null
@@ -60,40 +61,70 @@ hprt.render = function () {
     //Рисуем атрибут
     let attributeEl = new Аttribute(
         humanEl,
-        this
+        this.onElButtonClick
     )
         .render()
 
     //Рисуем навигатор
     let navigatorEl = new Navigator(
         humanEl,
-        this
-    ).render()
+        this.goNorthWest,
+        this.goNorth,
+        this.goNortheEast,
+        this.goWest,
+        this.goEast,
+        this.goSouthWest,
+        this.goSouth,
+        this.goSouthEast
+    )
+        .render()
     //Рисуем карту
     let mapEl = new Map(humanEl).render()
 }
 
 
-hprt.onElButtonClick = function () {
-    if (this.nameEl.value != "") {
-        this.name = this.nameEl.value
+hprt.onElButtonClick = function (event) {
+    if (event.target.data[0].value != "") {
+        this.name = event.target.data[0].value
     }
 
-    if (this.ageEl.value != "") {
-        this.age = this.ageEl.value
+    if (event.target.data[1].value != "") {
+        this.age = event.target.data[1].value
     }
 
-    if (this.genderEl.value != "") {
-        this.gender = this.genderEl.value
+    if (event.target.data[2].value != "") {
+        this.gender = event.target.data[2].value
     }
 
-    if (this.raceEl.value != "") {
-        this.race = this.raceEl.value
+    if (event.target.data[3].value != "") {
+        this.race = event.target.data[3].value
     }
 
-    if (this.skillEl.value != "") {
-        this.skill = this.skillEl.value
+    if (event.target.data[4].value != "") {
+        this.skill = event.target.data[4].value
     }
+
+
+    /*
+        if (this.nameEl.value != "") {
+            this.name = this.nameEl.value
+        }
+    
+        if (this.ageEl.value != "") {
+            this.age = this.ageEl.value
+        }
+    
+        if (this.genderEl.value != "") {
+            this.gender = this.genderEl.value
+        }
+    
+        if (this.raceEl.value != "") {
+            this.race = this.raceEl.value
+        }
+    
+        if (this.skillEl.value != "") {
+            this.skill = this.skillEl.value
+        }*/
 
     this._outputToConsoleCharacter()
 }
@@ -103,6 +134,7 @@ hprt.goNorth = function () {
     this.y -= 1
     this._outputToConsoleCharacterAndCoordinates()
 }
+
 
 hprt.goNortheEast = function () {
     this.x += 1

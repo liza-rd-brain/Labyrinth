@@ -1,6 +1,6 @@
-function Аttribute(humanEl, parent) {
+function Аttribute(humanEl, onElButtonClick) {
     this.humanEl = humanEl
-    this.parent = parent
+    this.onElButtonClick = onElButtonClick
 }
 
 let aprt = Аttribute.prototype
@@ -23,39 +23,46 @@ aprt.render = function () {
     attributeFormEl.className = "form"
 
     // Строка изменить имя
-    //this.parent.nameEl = nameEl  и к остальным так же?!
-    this.parent.nameEl = document.createElement("input")
+    //вариант с передачей this
+    /*this.parent.nameEl = document.createElement("input")
     this.parent.nameEl.placeholder = "Введите имя персонажа"
     this.parent.nameEl.className = "row"
-    attributeFormEl.appendChild(this.parent.nameEl)
+    attributeFormEl.appendChild(this.parent.nameEl)*/
+    let nameEl = document.createElement("input")
+    nameEl.placeholder = "Введите имя персонажа"
+    nameEl.className = "row"
+    attributeFormEl.appendChild(nameEl)
     //Строка изменить возраст
-    this.parent.ageEl = document.createElement("input")
-    this.parent.ageEl.placeholder = "Введите возраст персонажа"
-    this.parent.ageEl.className = "row"
-    attributeFormEl.appendChild(this.parent.ageEl)
+    let ageEl = document.createElement("input")
+    ageEl.placeholder = "Введите возраст персонажа"
+    ageEl.className = "row"
+    attributeFormEl.appendChild(ageEl)
     //Строка изменить пол
-    this.parent.genderEl = document.createElement("input")
-    this.parent.genderEl.placeholder = "Введите пол персонажа"
-    this.parent.genderEl.className = "row"
-    attributeFormEl.appendChild(this.parent.genderEl)
+    let genderEl = document.createElement("input")
+    genderEl.placeholder = "Введите пол персонажа"
+    genderEl.className = "row"
+    attributeFormEl.appendChild(genderEl)
     //Строка изменить рассу
-    this.parent.raceEl = document.createElement("input")
-    this.parent.raceEl.placeholder = "Введите рассу персонажа"
-    this.parent.raceEl.className = "row"
-    attributeFormEl.appendChild(this.parent.raceEl)
+    let raceEl = document.createElement("input")
+    raceEl.placeholder = "Введите рассу персонажа"
+    raceEl.className = "row"
+    attributeFormEl.appendChild(raceEl)
     //Строка изменить навык
-    this.parent.skillEl = document.createElement("input")
-    this.parent.skillEl.placeholder = "Введите навык персонажа"
-    this.parent.skillEl.className = "row"
-    attributeFormEl.appendChild(this.parent.skillEl)
+    let skillEl = document.createElement("input")
+    skillEl.placeholder = "Введите навык персонажа"
+    skillEl.className = "row"
+    attributeFormEl.appendChild(skillEl)
 
     //Кнопка "Ок!"
     let elButton = document.createElement("button")
     elButton.innerHTML = "Ok!"
     elButton.type = "button"
     elButton.className = "row"
+    elButton.data = attributeFormEl
+    /*elButton.data1 = nameEl
+    elButton.data2 = ageEl*/
     attributeFormEl.appendChild(elButton)
-    elButton.addEventListener("click", this.parent.onElButtonClick)
+    elButton.addEventListener("click", this.onElButtonClick)
 
 }
 
