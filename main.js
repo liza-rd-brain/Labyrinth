@@ -1,10 +1,4 @@
-var person = null
-
-
 function init() {
-    person = new Human(container,"nameHuman", 18, "man", "dutsh", "baker").render()
-    
-    /*navigator = new Human (container,"Robin", 18, "man", "dutsh", "baker").render()*/
-   
+    var labyrinthEl = new Labyrinth(container).render()
 }
 window.onload = init
