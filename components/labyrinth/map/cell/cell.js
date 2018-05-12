@@ -33,6 +33,7 @@ ceprt.drawGrid = function (color) {
     this.ctx.strokeRect(this.x, this.y, this.blockSize, this.blockSize)
 }
 
+// рисуем саму карту= заполнение ячейки
 ceprt.drawLandscape = function () {
 
     let pickLandscape = this.landscape[Math.floor(Math.random() * this.landscape.length)]
@@ -50,17 +51,12 @@ ceprt.drawLandscape = function () {
         case "water":
             landscapeColor = "	rgb(0,0,255, 0.5)"
             break;
-
     }
-
     this.ctx.fillStyle = landscapeColor
     this.ctx.fillRect(this.x, this.y, this.blockSize, this.blockSize)
-
-
-
 }
 
-
+//зачем это здесь?!
 //функция рисования кружочка
 ceprt.circle = function (x, y, radius, fillCircle) {
     this.ctx.beginPath()

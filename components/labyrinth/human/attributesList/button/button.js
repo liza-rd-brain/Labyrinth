@@ -13,7 +13,6 @@ bprt.render = function () {
 
     let buttonEl = document.createElement("button")
     buttonEl.innerHTML = this.OK
-    //вспомнить про типы кнопок
     buttonEl.type = "button"
     buttonEl.className = this.CLASS_NAME
     buttonEl.data = this.attributesListEl

@@ -1,13 +1,25 @@
-function Human() {
+function Human(canvas, ctx, blockSize, lengthMap, heightMap, width, height, updateLabyrinth, x, y, go) {
+    this.canvas = canvas
+    this.ctx = ctx
+    this.blockSize = blockSize
+    this.lengthMap = lengthMap
+    this.heightMap = heightMap
+    this.width = width
+    this.height = height
+    this.updateLabyrinth = updateLabyrinth
+    this.x = x
+    this.y = y
+    this.go = go
     this.onButtonElClick = this.onButtonElClick.bind(this)
     this.name = null
     this.ageEl = null
     this.genderEl = null
     this.raceEl = null
     this.skillEl = null
-    this.x = 0
-    this.y = 0
-    this.go = this.go.bind(this)
+    /*  this.x = 0
+     this.y = 0 */
+    /* this.go = this.go.bind(this) */
+    /* this.drawHuman = this.drawHuman.bind(this) */
     this.massivCharacter = [this.name, this.ageEl, this.genderEl, this.raceEl, this.skillEl]
     this.massivCoordinates = [this.x, this.y]
 }
@@ -15,18 +27,52 @@ function Human() {
 let hprt = Human.prototype
 hprt.CLASS_NAME = "human"
 
+
 hprt.render = function () {
     let humanEl = document.createElement("div")
     humanEl.className = this.CLASS_NAME
+    /* this.drawHuman() */
     //cписок атрбиутов
     let attributesListEl = new АttributesList(this.nameEl, this.onButtonElClick).render()
     humanEl.appendChild(attributesListEl)
-
     let navigatorEl = new Navigator(this.go).render()
     humanEl.appendChild(navigatorEl)
     return humanEl
 }
 
+
+//частный
+/* hprt.circle = function (x, y, radius, fillCircle) {
+    this.ctx.beginPath()
+    this.ctx.arc(x, y, radius, 0, Math.PI * 2, false)
+    if (fillCircle) {
+        this.ctx.fill()
+    } else {
+        this.ctx.stroke()
+    }
+} */
+
+// /* //частный
+// //нарисовать кружочек = человечка
+// hprt.drawHuman = function () {
+//     //с начальной рандомной позицией
+//     /* var centerX = (Math.floor(Math.random() * this.lengthMap)) * this.blockSize + this.blockSize / 2
+//     var centerY = (Math.floor(Math.random() * this.heightMap)) * this.blockSize + this.blockSize / 2 */
+//     //в начале координат
+//     var centerX = this.x * this.blockSize + this.blockSize / 2
+//     var centerY = this.y * this.blockSize + this.blockSize / 2
+//     this.ctx.fillStyle = "black"
+//     this.circle(centerX, centerY, this.blockSize / 2, true)
+// }
+
+// //ВЫНЕСТИ В ЛАБИРИНТ
+// //может вообще тогда вынести в го?!
+// hprt.moveHuman = function () {
+//     this.ctx.clearRect(0, 0, this.width, this.height)
+//     this.drawHuman()
+
+// } */
+//?!
 hprt.onButtonElClick = function (event) {
     //если строка не пустая, то записываем значение
     //сделать массив, соответствующий коллекциии и в соответсвии значению одного массива ставить другое
@@ -59,7 +105,8 @@ hprt.onButtonElClick = function (event) {
     } */
 
 
-    this._outputToConsoleCharacter()
+    /* this._outputToConsoleCharacter() */
+    this._outputToConsoleCharacterAndCoordinates()
 }
 //приватные методы, выводящий информацию на консоль
 //Character
@@ -72,6 +119,7 @@ hprt.onButtonElClick = function (event) {
     console.groupEnd()
 } */
 
+//частный
 hprt._outputToConsoleCharacter = function () {
     console.groupCollapsed("Character")
     console.log(
@@ -80,6 +128,7 @@ hprt._outputToConsoleCharacter = function () {
     console.groupEnd()
 }
 
+//частный
 hprt._outputToConsoleCharacterAndCoordinates = function () {
     this._outputToConsoleCharacter()
     console.groupCollapsed("Coordinates")
@@ -89,7 +138,10 @@ hprt._outputToConsoleCharacterAndCoordinates = function () {
     console.groupEnd()
 }
 
-hprt.go = function (event) {
+//ВЫНЕСТИ В ЛАБИРИНТ
+//щелчок по кнопка= человек движется по карте
+// а значит для динамики и карту нужно будет перерисовывать
+/* hprt.go = function (event) {
     switch (event.target.data) {
         case Navigator.prototype.NORTHWEST:
             this.x -= 1
@@ -124,6 +176,10 @@ hprt.go = function (event) {
     }
 
     this._outputToConsoleCharacterAndCoordinates()
-}
+    this.updateLabyrinth()
+    this.drawHuman()
+
+
+} */
 
 hprt = null
