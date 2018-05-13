@@ -1,29 +1,26 @@
-function Cell(col, row, blockSize, ctx) {
+function Cell(col, row, blockSize, ctx, dataMap) {
     this.col = col
     this.row = row
     this.blockSize = blockSize
     this.ctx = ctx
-    this.drawCircle = this.drawCircle.bind(this)
+    this.dataMap = dataMap
+    /* this.pickLandscape = pickLandscape */
+    /* this.drawCircle = this.drawCircle.bind(this) */
     this.x = null
     this.y = null
 
 }
 
-
 let ceprt = Cell.prototype
 ceprt.CLASS_NAME = "cell"
-
-ceprt.landscape = ["ground", "grass", "water"]
-
+/* ceprt.landscape = ["ground", "grass", "water"] */
 
 ceprt.render = function () {
     let cellEl = document.createElement("div")
     cellEl.className = this.CLASS_NAME
-    cellEl.innerHTML = "кусь"
     this.drawGrid("red")
     this.drawLandscape()
 }
-
 
 //рисуем сетку карты
 ceprt.drawGrid = function (color) {
@@ -36,12 +33,11 @@ ceprt.drawGrid = function (color) {
 // рисуем саму карту= заполнение ячейки
 ceprt.drawLandscape = function () {
 
-    let pickLandscape = this.landscape[Math.floor(Math.random() * this.landscape.length)]
-    this.ctx.fillText(pickLandscape, this.x + this.blockSize / 3, this.y + this.blockSize / 3)
+    /* let pickLandscape = this.landscape[Math.floor(Math.random() * this.landscape.length)] */
+    this.ctx.fillText(this.dataMap, this.x + this.blockSize / 3, this.y + this.blockSize / 3)
 
     let landscapeColor
-    /* let landscapeColor(pickLandscape) */
-    switch (pickLandscape) {
+    switch (this.dataMap) {
         case "ground":
             landscapeColor = "rgb(128,0,0, 0.5)"
             break;
@@ -56,8 +52,8 @@ ceprt.drawLandscape = function () {
     this.ctx.fillRect(this.x, this.y, this.blockSize, this.blockSize)
 }
 
-//зачем это здесь?!
-//функция рисования кружочка
+
+/* //функция рисования кружочка
 ceprt.circle = function (x, y, radius, fillCircle) {
     this.ctx.beginPath()
     this.ctx.arc(x, y, radius, 0, Math.PI * 2, false)
@@ -74,7 +70,6 @@ ceprt.drawCircle = function (color) {
     var centerY = this.row * this.blockSize + this.blockSize / 2
     this.ctx.fillStyle = color
     this.circle(centerX, centerY, this.blockSize / 2, true)
-}
-
+} */
 
 ceprt = null

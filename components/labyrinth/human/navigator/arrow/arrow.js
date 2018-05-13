@@ -8,18 +8,14 @@ let arrprt = Arrow.prototype
 arrprt.CLASS_NAME = "arrow"
 
 arrprt.render = function () {
-
     //cтрелки можно тоже сделать через button
-
     let ArrowEl = document.createElement("button")
     ArrowEl.type = "button"
-    /* let ArrowEl = document.createElement("div") */
     ArrowEl.innerHTML = this.direction
     ArrowEl.className = this.CLASS_NAME
     ArrowEl.data = this.direction
-    ArrowEl.addEventListener("click", this.go/* this.updateLabyrinth */ )
-    /*     goNorthWestEL.addEventListener("click", this.goNorthWest)
-     */
+    ArrowEl.addEventListener("click", this.go)
+
     return ArrowEl
 }
 

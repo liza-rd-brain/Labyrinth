@@ -40,9 +40,6 @@ nprt.render = function () {
     navigatorEl.appendChild(goSouthEl)
     let goSouthEastEL = new Arrow(this.SOUTHEAST, this.go, this.updateLabyrinth).render()
     navigatorEl.appendChild(goSouthEastEL)
-    //навешивала обработчик на кнопку
-    /* goSouthEastEL.addEventListener("click", this.goSouthEast) */
-
     return navigatorEl
 }
 

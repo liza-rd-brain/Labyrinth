@@ -1,5 +1,4 @@
-function АttributesList(nameEl, onButtonElClick) {
-    this.nameEl = nameEl
+function АttributesList(onButtonElClick) {
     this.onButtonElClick = onButtonElClick
 }
 
@@ -14,7 +13,7 @@ alprt.SKILL = "навык"
 
 
 alprt.render = function () {
-    
+
     let attributesListEl = document.createElement("form")
     attributesListEl.className = this.CLASS_NAME
 
@@ -33,9 +32,9 @@ alprt.render = function () {
     let attributeSkillEl = new Attribute(this.SKILL).render()
     attributesListEl.appendChild(attributeSkillEl)
 
-    let buttonEl = new Button(this.onButtonElClick, attributesListEl,this.rename).render()
+    let buttonEl = new Button(this.onButtonElClick, attributesListEl).render()
     attributesListEl.appendChild(buttonEl)
-  return attributesListEl
+    return attributesListEl
 }
 
 
