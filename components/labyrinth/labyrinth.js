@@ -12,6 +12,7 @@ function Labyrinth(container) {
     this.y = 0
     this.startX = null
     this.startY = null
+    this.deltaX = 0
     this.name = null
     this.ageEl = null
     this.genderEl = null
@@ -39,6 +40,7 @@ lprt.render = function () {
     this.labyrinthEl = document.createElement("div")
     this.labyrinthEl.className = this.CLASS_NAME
     this.container.appendChild(this.labyrinthEl)
+
     this.makeCanvas()
     this.humanEl = new Human(this.updateLabyrinth,
         this.x,
@@ -73,8 +75,38 @@ lprt.makeCanvas = function () {
 }
 
 lprt.go = function (event) {
-    this.startX = this.x
-    this.startY = this.y
+    //рабочий вариант без дерганий
+    /* let deltaX = 0 */
+    /* this._changeCoord(event)
+    this.deltaX += this.x */
+
+    if ((Math.round(this.startX * 10) / 10 == this.x /* - this.deltaX */ && Math.round(this.startY * 10) / 10 == this.y)) {
+        this.startX = this.x /* - this.deltaX */
+        this.startY = this.y
+        this._changeCoord(event) 
+        this.updateLabyrinth()
+        this.outputToConsoleCharacterAndCoordinates()
+
+    }
+
+    // пытаюсь понять как сделать отклажывание перемещений
+    /* let deltaX = 0
+    deltaX++
+    this._changeCoord(event)
+    
+    for (i = 0; i < deltaX + 1; i++) {
+        this.startX = this.x - deltaX 
+        this.startY = this.y
+        
+        this.updateLabyrinth()
+        this.outputToConsoleCharacterAndCoordinates()
+    } */
+}
+
+
+
+
+lprt._changeCoord = function (event) {
     switch (event.target.data) {
         case Navigator.prototype.NORTHWEST:
             this.x -= 1
@@ -107,34 +139,46 @@ lprt.go = function (event) {
             break;
     }
 
-    this.outputToConsoleCharacterAndCoordinates()
-    this.updateLabyrinth()
 }
 
 
 
 lprt.updateLabyrinth = function () {
+
+    if (this.startX != this.x) {
+        if (this.startX < this.x) {
+            /* this.startX += 1 / 10 */
+            this.startX = (Math.round((this.startX) * 100) / 100) + 1 / 10
+
+        }
+        else if (this.startX > this.x) {
+            /* this.startX -= 1 / 10 */
+            this.startX = (Math.round((this.startX) * 100) / 100) - 1 / 10
+        }
+
+    }
+
+    if (this.startY != this.y) {
+        if (this.startY < this.y) {
+            this.startY = (Math.round((this.startY) * 100) / 100) + 1 / 10
+        }
+        else if (this.startY > this.y) {
+            this.startY = (Math.round((this.startY) * 100) / 100) - 1 / 10
+        }
+
+    }
+
+    var timeoutID = setTimeout(this.updateLabyrinth, this.animationTime)
+    if (Math.round(this.startX * 10) / 10 == this.x && Math.round(this.startY * 10) / 10 == this.y) {
+        clearTimeout(timeoutID)
+    }
     this.ctx.clearRect(0, 0, this.width, this.height)
     this.labyrinthEl.removeChild(this.mapEl)
     this.mapEl = new Map(this.canvas, this.ctx, this.blockSize, this.lengthMap, this.heightMap, this.startX, this.startY, this.dataMap).render()
     this.labyrinthEl.appendChild(this.mapEl)
-    var timeoutID = setTimeout(this.updateLabyrinth, this.animationTime)
-    if (this.startX == this.x && this.startY == this.y) {
-        clearTimeout(timeoutID)
-    }
-    this.startX += ((this.x - this.startX) / 10)
-    this.startY += ((this.y - this.startY) / 10)
-    
 }
 
 
-
-
-
-/*  this.ctx.clearRect(0, 0, this.width, this.height)
- this.labyrinthEl.removeChild(this.mapEl)
- this.mapEl = new Map(this.canvas, this.ctx, this.blockSize, this.lengthMap, this.heightMap, this.x, this.y, this.dataMap).render()
- this.labyrinthEl.appendChild(this.mapEl) */
 
 lprt.onButtonElClick = function (event) {
     //если строка не пустая, то записываем значение
@@ -156,7 +200,6 @@ lprt.onButtonElClick = function (event) {
     }
     this.outputToConsoleCharacterAndCoordinates()
 }
-
 
 
 
